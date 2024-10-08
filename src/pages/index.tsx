@@ -63,6 +63,7 @@ export default function Home() {
               });
             }}
             placeholder="Confirm your password"
+            successMsg="Passwords match!"
             value={ formSubmission.passwordConfirm }
           />
           <Button

@@ -6,6 +6,7 @@ interface PasswordInputProps {
 	onChange: (e:React.ChangeEvent<HTMLInputElement>) => void;
 	isValid?: boolean;
 	placeholder?: string;
+	successMsg?: string;
 	value: string;
 };
 
@@ -17,6 +18,7 @@ export function PasswordInput( {
 	label,
 	onChange,
 	placeholder,
+	successMsg,
 	value,
 }:PasswordInputProps ) {
 
@@ -32,6 +34,7 @@ export function PasswordInput( {
 				required={ isRequired }
 				type="password"
 			/>
+			{ successMsg && isValid && value.length > 0 && <div className="success-display"><p>{ successMsg }</p></div> }
 			{ errorMsg && ! isValid && value.length > 0 && <div className="error-display"><p>{ errorMsg }</p></div> }
 		</label>
 	);
