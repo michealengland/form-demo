@@ -1,4 +1,4 @@
-
+import { PasswordInput } from '../components/PasswordInput';
 
 export default function Home() {
   return (
@@ -10,15 +10,8 @@ export default function Home() {
             Username
             <input id="username" type="text" className="block" />
           </label>
-          <label htmlFor="password">
-            Password
-            <input type="password" className="block" />
-          </label>
-          <label htmlFor="passwordConfirm">
-            Password Confirm
-            <input id="passwordConfirm" type="password" className="block" />
-            <div className="error-display hidden">Passwords do not match.</div>
-          </label>
+          <PasswordInput id="password" label="Password" />
+          <PasswordInput id="passwordConfirm" label="Password Confirm" msg="Passwords do not match."/>
           <button type="submit">Submit</button>
         </form>
       </main>
