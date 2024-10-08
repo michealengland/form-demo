@@ -1,20 +1,19 @@
 import { useState } from 'react';
 
+import useLocalStorage from '../hooks/useLocalStorage';
 import { PasswordInput } from '../components/PasswordInput';
 import { TextInput } from '../components/TextInput';
 import { Button } from '../components/Button';
 
 export default function Home() {
-	const [formSubmission, setFormSubmission] = useState({
-		username: '',
-		password: '',
-		passwordConfirm: '',
-	});
+	const [username, setUsername] = useLocalStorage<string>('username', '');
+	const [password, setPassword] = useLocalStorage<string>('password', '');
+	const [passwordConfirm, setPasswordConfirm] = useState('');
 
 	// TODO Abstract this into a function with simple unit test.
 	const isPasswordConfirmationValid = (
-		formSubmission.password.length > 0 &&
-		formSubmission.password === formSubmission.passwordConfirm
+		password.length > 0 &&
+		password === passwordConfirm
 	);
 
 	return (
@@ -27,26 +26,20 @@ export default function Home() {
 						isRequired
 						label="Username"
 						onChange={(newUserName) => {
-							setFormSubmission({
-								...formSubmission,
-								username: newUserName.target.value,
-							});
+							setUsername(newUserName.target.value);
 						}}
 						placeholder="Enter username"
-						value={ formSubmission.username }
+						value={ username }
 					/>
 					<PasswordInput
 						id="password"
 						isRequired
 						label="Password"
 						onChange={(newValue) => {
-							setFormSubmission({
-								...formSubmission,
-								password: newValue.target.value,
-							});
+							setPassword(newValue.target.value);
 						}}
 						placeholder="Enter password"
-						value={ formSubmission.password }
+						value={ password }
 					/>
 					<PasswordInput
 						errorMsg="Passwords do not match."
@@ -57,23 +50,27 @@ export default function Home() {
 						}
 						label="Password Confirm"
 						onChange={(newValue) => {
-							setFormSubmission({
-								...formSubmission,
-								passwordConfirm: newValue.target.value,
-							});
+							setPasswordConfirm(newValue.target.value);
 						}}
 						placeholder="Confirm your password"
 						successMsg="Passwords match!"
-						value={ formSubmission.passwordConfirm }
+						value={ passwordConfirm }
 					/>
 					<Button
 						id="submit"
+
 						onClick={(e) => {
 							e.preventDefault();
+
 							// TODO Add form submission logic here.
 							// 1. Validate the form submission and sanitize the data.
 							// 2. Send the data to the server for processing.
-							console.log(formSubmission);
+							const formSubmissionData = {
+								username,
+								password,
+							}
+
+							console.log(formSubmissionData);
 						}}
 						text="Submit"
 						type="submit"
