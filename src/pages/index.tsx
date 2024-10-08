@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { PasswordInput } from '../components/PasswordInput';
 import { TextInput } from '../components/TextInput';
+import { Button } from '../components/Button';
 
 export default function Home() {
   const [formSubmission, setFormSubmission] = useState({
@@ -64,7 +65,15 @@ export default function Home() {
             placeholder="Confirm your password"
             value={ formSubmission.passwordConfirm }
           />
-          <button type="submit">Submit</button>
+          <Button
+            id="submit"
+            onClick={(e) => {
+              e.preventDefault();
+              console.log(formSubmission);
+            }}
+            text="Submit"
+            type="submit"
+          />
         </form>
       </main>
     </div>
