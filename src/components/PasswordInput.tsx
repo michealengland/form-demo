@@ -32,7 +32,7 @@ export function PasswordInput( {
 				required={ isRequired }
 				type="password"
 			/>
-			{ errorMsg && ! isValid && <div className="error-display hidden"><p>{ errorMsg }</p></div> }
+			{ errorMsg && ! isValid && value.length > 0 && <div className="error-display"><p>{ errorMsg }</p></div> }
 		</label>
 	);
 }

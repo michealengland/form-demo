@@ -10,6 +10,12 @@ export default function Home() {
     passwordConfirm: '',
   });
 
+  // TODO Abstract this into a function with simple unit test.
+  const isPasswordConfirmationValid = (
+    formSubmission.password.length > 0 &&
+    formSubmission.password === formSubmission.passwordConfirm
+  );
+
   return (
     <div className="font-sans flex justify-center items-center min-h-screen">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
@@ -45,6 +51,9 @@ export default function Home() {
             errorMsg="Passwords do not match."
             id="passwordConfirm"
             isRequired
+            isValid={
+              isPasswordConfirmationValid
+            }
             label="Password Confirm"
             onChange={(newValue) => {
               setFormSubmission({
