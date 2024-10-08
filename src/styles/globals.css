@@ -25,3 +25,8 @@ body {
     text-wrap: balance;
   }
 }
+
+input[type="text"],
+input[type="password"] {
+  @apply w-full p-1 rounded outline-purple-700 border border-purple-700 hover:bg-blue-50 focus:outline-2 transition-all;
+}

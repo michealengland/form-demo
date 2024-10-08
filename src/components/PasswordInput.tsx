@@ -9,7 +9,7 @@ interface PasswordInputProps {
 	successMsg?: string;
 	value: string;
 };
-
+// TODO Componentize the success & error message handler.
 export function PasswordInput( {
 	errorMsg,
 	id,
@@ -34,8 +34,8 @@ export function PasswordInput( {
 				required={ isRequired }
 				type="password"
 			/>
-			{ successMsg && isValid && value.length > 0 && <div className="success-display"><p>{ successMsg }</p></div> }
-			{ errorMsg && ! isValid && value.length > 0 && <div className="error-display"><p>{ errorMsg }</p></div> }
+			{ successMsg && isValid && value.length > 0 && <div className="p-1 text-xs round mt-1 bg-green-300 text-green-900"><p>{ successMsg }</p></div> }
+			{ errorMsg && ! isValid && value.length > 0 && <div className="p-1 text-xs round mt-1 bg-rose-300 text-rose-900"><p>{ errorMsg }</p></div> }
 		</label>
 	);
 }
