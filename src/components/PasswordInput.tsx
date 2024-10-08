@@ -1,5 +1,6 @@
 interface PasswordInputProps {
 	id: string;
+	isRequired?: boolean | false;
 	label: string;
 	errorMsg?: string;
 	onChange: (e:React.ChangeEvent<HTMLInputElement>) => void;
@@ -11,6 +12,7 @@ interface PasswordInputProps {
 export function PasswordInput( {
 	errorMsg,
 	id,
+	isRequired,
 	isValid,
 	label,
 	onChange,
@@ -20,13 +22,14 @@ export function PasswordInput( {
 
 	return (
 		<label htmlFor={ id }>
-			{ label }
+			{ isRequired ? `${label}*` : label }
 			<input
 				className="block"
 				defaultValue={ value }
 				id={ id }
 				onChange={ onChange }
 				placeholder={ placeholder }
+				required={ isRequired }
 				type="password"
 			/>
 			{ errorMsg && ! isValid && <div className="error-display hidden"><p>{ errorMsg }</p></div> }

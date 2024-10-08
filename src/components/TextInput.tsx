@@ -1,6 +1,7 @@
 
 interface TextInputProps {
 	id: string;
+	isRequired?: boolean | false;
 	label: string;
 	onChange: (e:React.ChangeEvent<HTMLInputElement>) => void;
 	placeholder?: string;
@@ -9,6 +10,7 @@ interface TextInputProps {
 
 export function TextInput( {
 	id,
+	isRequired,
 	label,
 	onChange,
 	placeholder,
@@ -17,13 +19,14 @@ export function TextInput( {
 
 	return (
 		<label htmlFor={ id }>
-			{ label }
+			{ isRequired ? `${label}*` : label }
 			<input
 				className="block"
 				defaultValue={ value }
 				id={ id }
 				onChange={ onChange }
 				placeholder={ placeholder }
+				required={ isRequired }
 				type="text"
 			/>
 		</label>

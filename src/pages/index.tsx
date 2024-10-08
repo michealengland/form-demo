@@ -17,6 +17,7 @@ export default function Home() {
         <form className="grid gap-4 bg-slate-50 p-5 text-slate-900" method="post">
           <TextInput
             id="username"
+            isRequired
             label="Username"
             onChange={(newUserName) => {
               setFormSubmission({
@@ -29,6 +30,7 @@ export default function Home() {
           />
           <PasswordInput
             id="password"
+            isRequired
             label="Password"
             onChange={(newValue) => {
               setFormSubmission({
@@ -42,6 +44,7 @@ export default function Home() {
           <PasswordInput
             errorMsg="Passwords do not match."
             id="passwordConfirm"
+            isRequired
             label="Password Confirm"
             onChange={(newValue) => {
               setFormSubmission({
