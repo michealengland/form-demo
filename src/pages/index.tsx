@@ -69,6 +69,9 @@ export default function Home() {
             id="submit"
             onClick={(e) => {
               e.preventDefault();
+              // TODO Add form submission logic here.
+              // 1. Validate the form submission and sanitize the data.
+              // 2. Send the data to the server for processing.
               console.log(formSubmission);
             }}
             text="Submit"
