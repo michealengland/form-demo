@@ -4,7 +4,7 @@ interface PasswordInputProps {
 	label: string;
 	errorMsg?: string;
 	onChange: (e:React.ChangeEvent<HTMLInputElement>) => void;
-	isValid?: boolean;
+	isValid?: boolean | null;
 	placeholder?: string;
 	successMsg?: string;
 	value: string;
@@ -34,8 +34,8 @@ export function PasswordInput( {
 				required={ isRequired }
 				type="password"
 			/>
-			{ successMsg && isValid && value.length > 0 && <div className="p-1 text-xs round mt-1 bg-green-300 text-green-900"><p>{ successMsg }</p></div> }
-			{ errorMsg && ! isValid && value.length > 0 && <div className="p-1 text-xs round mt-1 bg-rose-300 text-rose-900"><p>{ errorMsg }</p></div> }
+			{ isValid !== null && successMsg && isValid && value.length > 0 && <div className="p-1 text-xs round mt-1 bg-green-300 text-green-900"><p>{ successMsg }</p></div> }
+			{ isValid !== null && errorMsg && ! isValid && value.length > 0 && <div className="p-1 text-xs round mt-1 bg-rose-300 text-rose-900"><p>{ errorMsg }</p></div> }
 		</label>
 	);
 }

@@ -9,6 +9,9 @@ export default function Home() {
 	const [username, setUsername] = useLocalStorage<string>('username', '');
 	const [password, setPassword] = useLocalStorage<string>('password', '');
 	const [passwordConfirm, setPasswordConfirm] = useState('');
+	// 1. After the submit is clicked, we validate the field confirmation.
+	// 2. Once initially clicked, subsequent validation occurs on change.
+	const [isValidated, setIsValidated] = useState<Boolean | null>(null);
 
 	// TODO Abstract this into a function with simple unit test.
 	const isPasswordConfirmationValid = (
@@ -45,9 +48,7 @@ export default function Home() {
 						errorMsg="Passwords do not match."
 						id="passwordConfirm"
 						isRequired
-						isValid={
-							isPasswordConfirmationValid
-						}
+						isValid={ isValidated && isPasswordConfirmationValid }
 						label="Password Confirm"
 						onChange={(newValue) => {
 							setPasswordConfirm(newValue.target.value);
@@ -71,6 +72,9 @@ export default function Home() {
 							}
 
 							console.log(formSubmissionData);
+
+							// Enable validation after first submit.
+							setIsValidated(true);
 						}}
 						text="Submit"
 						type="submit"
